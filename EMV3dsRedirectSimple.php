@@ -3,10 +3,8 @@
 
 /*
 $ch = curl_init();
-
 // set url
 curl_setopt($ch, CURLOPT_URL, "https://victor-test-app123.herokuapp.com");
-
 //return the transfer as a string
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 //enable headers
@@ -21,24 +19,18 @@ header("Origin: https://na.gateway.mastercard.com");
 header("Content-Disposition: form-data; name="PaRes"; 
 // close curl resource to free up system resources
 curl_close($ch);
-
 $headers = [];
 $output = rtrim($output);
 $data = explode("\n",$output);
 $headers['status'] = $data[0];
 array_shift($data);
-
 foreach($data as $part){
-
     //some headers will contain ":" character (Location for example), and the part after ":" will be lost.
     $middle = explode(":",$part,2);
-
     //Supress warning message if $middle[1] does not exist, Thanks to @crayons
     if ( !isset($middle[1]) ) { $middle[1] = null; }
-
     $headers[trim($middle[0])] = trim($middle[1]);
 }
-
 // Print all headers as array
 echo "<pre>";
 print_r($headers);
@@ -63,7 +55,25 @@ echo "</pre>";
     <?php foreach (getallheaders() as $name => $value) { 
     echo "$name: $value <br>"; 
 }  ?></pre>
-    <br><p><h2>The PaRes value returned is:</h2>
+ <table>
+<?php 
+
+
+    foreach ($_POST as $key => $value) {
+        echo "<tr>";
+        echo "<td>";
+        echo $key;
+        echo "</td>";
+        echo "<td>";
+        echo $value;
+        echo "</td>";
+        echo "</tr>";
+    }
+
+
+?>
+</table>
+    <!--br><p><h2>The PaRes value returned is:</h2>
     <?php $pares = $_POST['PaRes']; echo $pares; 
     //var_dump($pares);
     ?></p>
@@ -76,7 +86,7 @@ echo "</pre>";
      <br><p><h2>The EMV 3DS RECOMMENDATION IS:</h2>
     <?php $emv3ds_RECOMMENDATION= $_POST['response_gatewayRecommendation']; echo $emv3ds_RECOMMENDATION;?></p>
      <br><p><h2>The EMV 3DS RESULT IS:</h2>
-    <?php $emv3ds_RESULT= $_POST['result']; echo $emv3ds_RESULT;?></p>
+    <?php $emv3ds_RESULT= $_POST['result']; echo $emv3ds_RESULT;?></p-->
 </body>
 
 </html>
