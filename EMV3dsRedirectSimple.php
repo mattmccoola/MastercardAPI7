@@ -4,7 +4,7 @@
 /*
 $ch = curl_init();
 // set url
-curl_setopt($ch, CURLOPT_URL, "https://victor-test-app123.herokuapp.com");
+curl_setopt($ch, CURLOPT_URL, "https://mattmc7.herokuapp.com");
 //return the transfer as a string
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 //enable headers
