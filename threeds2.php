@@ -22,7 +22,7 @@
 				merchantId: merchantId,
 				sessionId: sessionId,
 				containerId: "3DSUI",
-				configuration: {userLanguage: "en-AU", wsVersion: 54},
+				configuration: {userLanguage: "en-AU", wsVersion: 55},
 				callback: function(data) {
 						if(ThreeDS.isConfigured()) {
 							console.log("EMV3DS configured.");
@@ -68,7 +68,7 @@
 						switch (data.gatewayRecommendation) {
 							case "PROCEED":
 								//authenticatePayer();//merchant's method
-								window.setTimeout(authenticate3DS, 5000);
+								window.setTimeout(authenticate3DS, 10000);
 								break;
 							case "DO_NOT_PROCEED":
 								displayReceipt(data);//merchant's method, you can offer the payer the option to try another payment method.
@@ -123,7 +123,10 @@
 	<body>
 		
 		<table border=0>
-		<tr><td>
+			<h3>Prerequisites:</h3>
+			<h3>Step 1 - CREATE_SESSION (Version 55) to be run to obtain authenticated session ID.  </h3>
+			<h3>Step 2 - UPDATE_SESSION (Version 55) to be run to add card details, order ID and redirectResponseUrl - https://victor-test-app123.herokuapp.com//EMV3dsRedirectSimple.php.  </h3>
+		<br /><tr><td>
 		Merchant ID: <input type='text' id='merchantid' /> <br />
 		Session ID: <input type='text' id='sessionid' /> <br />
 		<button  id='configure' onclick="configure3DS();">Configure</button> <br />
