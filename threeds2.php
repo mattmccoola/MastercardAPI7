@@ -125,7 +125,7 @@
 		<table border=0>
 			<h3>Prerequisites:</h3>
 			<h3>Step 1 - CREATE_SESSION (Version 55) to be run to obtain authenticated session ID.  </h3>
-			<h3>Step 2 - UPDATE_SESSION (Version 55) to be run to add card details, order ID and redirectResponseUrl - https://victor-test-app123.herokuapp.com//EMV3dsRedirectSimple.php.  </h3>
+			<h3>Step 2 - UPDATE_SESSION (Version 55) to be run to add card details, order ID and redirectResponseUrl - https://mattmc7.herokuapp.com/EMV3dsRedirectSimple.php.  </h3>
 		<br /><tr><td>
 		Merchant ID: <input type='text' id='merchantid' /> <br />
 		Session ID: <input type='text' id='sessionid' /> <br />
