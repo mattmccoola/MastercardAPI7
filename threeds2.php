@@ -55,7 +55,7 @@
 						console.error("error.status : ", error.status);
 					}
 					else {
-						console.log("After Initiate 3DS ", data);
+						console.log("After Initiate 3DS", data);
 				 
 						//data.response will contain information like gatewayRecommendation, authentication version, etc.
 						console.log("REST API raw response ", data.restApiResponse);
