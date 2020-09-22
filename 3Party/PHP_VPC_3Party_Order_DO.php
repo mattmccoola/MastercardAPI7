@@ -1,0 +1,69 @@
+<?php
+
+include('VPCPaymentConnection.php');
+$conn = new VPCPaymentConnection();
+
+
+// This is secret for encoding the SHA256 hash
+// This secret will vary from merchant to merchant
+
+//$secureSecret = "F2C868145B4B468ED1F98B77092FDDD3";
+$secureSecret = $_POST["Secure_Secret"];
+//echo $secureSecret;
+
+
+// Set the Secure Hash Secret used by the VPC connection object
+$conn->setSecureSecret($secureSecret);
+
+
+// *******************************************
+// START OF MAIN PROGRAM
+// *******************************************
+// Sort the POST data - it's important to get the ordering right
+ksort ($_POST);
+
+// add the start of the vpcURL querystring parameters
+$vpcURL = $_POST["virtualPaymentClientURL"];
+
+// This is the title for display
+$title  = $_POST["Title"];
+$custom = $_POST["custom"];
+
+// Remove the Virtual Payment Client URL from the parameter hash as we 
+// do not want to send these fields to the Virtual Payment Client.
+unset($_POST["virtualPaymentClientURL"]); 
+unset($_POST["SubButL"]);
+unset($_POST["Title"]);
+unset($_POST["Secure_Secret"]);
+unset($_POST["custom"]);
+
+
+// Add VPC post data to the Digital Order
+foreach($_POST as $key => $value) {
+	if (strlen($value) > 0) {
+		$conn->addDigitalOrderField($key, $value);
+	}
+}
+
+ 
+
+// Add original order HTML so that another transaction can be attempted.
+$conn->addDigitalOrderField("AgainLink", $againLink);
+
+echo "<br><br><b>Query String:</b><br>";
+
+// Obtain a one-way hash of the Digital Order data and add this to the Digital Order
+$secureHash = $conn->hashAllFields();
+//$conn->addDigitalOrderField("Title", $title);
+$conn->addDigitalOrderField("vpc_SecureHash", $secureHash);
+$conn->addDigitalOrderField("vpc_SecureHashType", "SHA256");
+$conn->addDigitalOrderField("custom", $custom);
+
+
+// Obtain the redirection URL and redirect the web browser
+$vpcURL = $conn->getDigitalOrder($vpcURL);
+
+//header("Location: ".$vpcURL);
+echo "<br><br><b>SHA256 Hash:</b><br>$secureHash<br><br><b>Request:</b><br><a href=$vpcURL>$vpcURL</a>";
+
+?>
