@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 	<html>
     	<head>
-        <script src="https://test-gateway.mastercard.com/static/threeDS/1.3.0/three-ds.min.js"
+        <script src="https://paymentgateway.commbank.com.au/static/threeDS/1.3.0/three-ds.min.js"
                 data-error="errorCallback"
                 data-cancel="cancelCallback">
         </script>
