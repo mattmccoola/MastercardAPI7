@@ -22,7 +22,7 @@
 				merchantId: merchantId,
 				sessionId: sessionId,
 				containerId: "3DSUI",
-				configuration: {userLanguage: "en-AU", wsVersion: 55},
+				configuration: {userLanguage: "en-AU", wsVersion: 58},
 				callback: function(data) {
 						if(ThreeDS.isConfigured()) {
 							console.log("EMV3DS configured.");
