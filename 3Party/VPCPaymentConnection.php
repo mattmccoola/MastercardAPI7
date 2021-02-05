@@ -1,5 +1,70 @@
 <?php
+/*
+ *
+ * Version 1.0
+ *
+ * ----------------- Disclaimer ------------------------------------------------
+ *
+ * Copyright © 2007 Dialect Payment Technologies - a Transaction Network
+ * Services company.  All rights reserved.
+ *
+ * This program is provided by Dialect Payment Technologies on the basis that
+ * you will treat it as confidential.
+ *
+ * No part of this program may be reproduced or copied in any form by any means
+ * without the written permission of Dialect Payment Technologies.  Unless
+ * otherwise expressly agreed in writing, the information contained in this
+ * program is subject to change without notice and Dialect Payment Technologies
+ * assumes no responsibility for any alteration to, or any error or other
+ * deficiency, in this program.
+ *
+ * 1. All intellectual property rights in the program and in all extracts and 
+ *    things derived from any part of the program are owned by Dialect and will 
+ *    be assigned to Dialect on their creation. You will protect all the 
+ *    intellectual property rights relating to the program in a manner that is 
+ *    equal to the protection you provide your own intellectual property.  You 
+ *    will notify Dialect immediately, and in writing where you become aware of 
+ *    a breach of Dialect's intellectual property rights in relation to the
+ *    program.
+ * 2. The names "Dialect", "QSI Payments" and all similar words are trademarks
+ *    of Dialect Payment Technologies and you must not use that name or any 
+ *    similar name.
+ * 3. Dialect may at its sole discretion terminate the rights granted in this 
+ *    program with immediate effect by notifying you in writing and you will 
+ *    thereupon return (or destroy and certify that destruction to Dialect) all 
+ *    copies and extracts of the program in its possession or control.
+ * 4. Dialect does not warrant the accuracy or completeness of the program or  
+ *    its content or its usefulness to you or your merchant customers.  To the  
+ *    extent permitted by law, all conditions and warranties implied by law  
+ *    (whether as to fitness for any particular purpose or otherwise) are  
+ *    excluded. Where the exclusion is not effective, Dialect limits its  
+ *    liability to $100 or the resupply of the program (at Dialect's option).
+ * 5. Data used in examples and sample data files are intended to be fictional 
+ *    and any resemblance to real persons or companies is entirely coincidental.
+ * 6. Dialect does not indemnify you or any third party in relation to the
+ *   content or any use of the content as contemplated in these terms and 
+ *    conditions. 
+ * 7. Mention of any product not owned by Dialect does not constitute an 
+ *    endorsement of that product.
+ * 8. This program is governed by the laws of New South Wales, Australia and is 
+ *    intended to be legally binding. 
+ * ---------------------------------------------------------------------------*/
 
+/**
+ * Please refer to the following guides for more information:
+ *     1. Payment Client Integration Guide
+ *        this details how to integrate with Payment Client 3.1.
+ *     2. Payment Client Reference Guide
+ *        this guide details all the input and return parameters that are used
+ *        by the Payment Client and Payment Server for a Payment Client
+ *        integration.
+ *     3. Payment Client Install Guide
+ *        this guide details the installation of Payment Client 3.1 and related
+ *        issues.
+ *
+ * @author Dialect Payment Technologies
+ *
+ */
 require('PaymentCodesHelper.php');
 
 class VPCPaymentConnection {
@@ -25,7 +90,7 @@ class VPCPaymentConnection {
 		// Add the digital order information to the data to be posted to the Payment Server
 		$this->postData .= (($this->postData=="") ? "" : "&") . urlencode($field) . "=" . urlencode($value);
 		
-		// Add the key's value to the hash input (only used for 3 party)
+		// Add the key's value to the SHA256 hash input (only used for 3 party)
 		$this->hashInput .= $field . "=" . $value . "&";
 		
 		return true;
@@ -199,8 +264,7 @@ class VPCPaymentConnection {
 	
 	
 	public function hashAllFields() {
-		echo $this->hashInput=rtrim($this->hashInput,"&");
-                //echo $this->hashInput, pack("H*",$this->secureHashSecret);
+		$this->hashInput=rtrim($this->hashInput,"&");
 		return strtoupper(hash_hmac('SHA256',$this->hashInput, pack("H*",$this->secureHashSecret)));
 	}
 
