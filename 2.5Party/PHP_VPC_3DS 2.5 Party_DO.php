@@ -79,7 +79,7 @@ $appendAmp = 0;
 		}
     }
 }
-//$hashinput = rtrim($hashinput, "&");
+$hashinput = rtrim($hashinput, "&");
 ?>		
 	<!-- attach SecureHash -->
 		<input type="hidden" name="hashinput" value="<?php echo($hashinput); ?>"/>
