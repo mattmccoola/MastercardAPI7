@@ -37,33 +37,36 @@ unset($_POST["Title"]);
 unset($_POST["Secure_Secret"]);
 unset($_POST["custom"]);
 
+?>
 
-// Add VPC post data to the Digital Order
-foreach($_POST as $key => $value) {
-	if (strlen($value) > 0) {
-		$conn->addDigitalOrderField($key, $value);
-	}
-}
+ <body onload="document.order.submit()">
+<!--body-->
+	<form name="order" action="<?php echo($redirectURL); ?>" method="post">
+    <!-- input type="submit" name="submit" value="Continue"/ -->
+    <p>Please wait while your payment is being processed...</p>
 
- 
-
-// Add original order HTML so that another transaction can be attempted.
-$conn->addDigitalOrderField("AgainLink", $againLink);
-
-echo "<br><br><b>Query String:</b><br>";
-
-// Obtain a one-way hash of the Digital Order data and add this to the Digital Order
-$secureHash = $conn->hashAllFields();
-//$conn->addDigitalOrderField("Title", $title);
-$conn->addDigitalOrderField("vpc_SecureHash", $secureHash);
-$conn->addDigitalOrderField("vpc_SecureHashType", "SHA256");
-$conn->addDigitalOrderField("custom", $custom);
-
-
-// Obtain the redirection URL and redirect the web browser
-$vpcURL = $conn->getDigitalOrder($vpcURL);
-
-//header("Location: ".$vpcURL);
-echo "<br><br><b>SHA256 Hash:</b><br>$secureHash<br><br><b>Request:</b><br><a href=$vpcURL>$vpcURL</a>";
+<?php
+	$hashinput = "";
+   foreach($_POST as $key => $value) {
+    // create the hash input and URL leaving out any fields that have no value
+    if (strlen($value) > 0) {
 
 ?>
+<input type="hidden" name="<?php echo(urlencode($key)); ?>" value="<?php echo(urlencode($value)); ?>"/><br>
+<?php 			
+        if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
+		$hashinput .= $key . "=" . $value . "&";
+		}
+    }
+}
+$hashinput = rtrim($hashinput, "&");
+?>		
+	<!-- attach SecureHash -->
+	<input type="hidden" name="hashinput" value="<?php echo($hashinput); ?>"/>
+    <input type="hidden" name="vpc_SecureHash" value="<?php echo(strtoupper(hash_hmac('SHA256', $hashinput, pack('H*',$securesecret)))); ?>"/>
+	<input type="hidden" name="vpc_SecureHashType" value="SHA256">
+
+</td></tr>
+</table>
+</form>
+</html>
