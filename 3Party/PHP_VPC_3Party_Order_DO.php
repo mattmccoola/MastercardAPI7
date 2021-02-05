@@ -52,7 +52,7 @@ unset($_POST["custom"]);
     if (strlen($value) > 0) {
 
 ?>
-<input type="hidden" name="<?php echo(urlencode($key)); ?>" value="<?php echo(urlencode($value)); ?>"/><br>
+<input type="hidden" name="<?php echo($key); ?>" value="<?php echo($value); ?>"/><br>
 <?php 			
         if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
 		$hashinput .= $key . "=" . $value . "&";
