@@ -39,6 +39,7 @@ unset($_POST["btnPay"]);
 unset($_POST["Title"]);
 unset($_POST["Secure_Secret"]);
 unset($_POST["custom"]);
+unset($_POST["SubButL"]);
 
 
 // The URL link for the receipt to do another transaction.
