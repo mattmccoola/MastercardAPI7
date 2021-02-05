@@ -36,6 +36,9 @@ $redirectURL = $_POST["virtualPaymentClientURL"];
 // do not want to send these fields to the Virtual Payment Client.
 unset($_POST["virtualPaymentClientURL"]); 
 unset($_POST["btnPay"]);
+unset($_POST["Title"]);
+unset($_POST["Secure_Secret"]);
+unset($_POST["custom"]);
 
 
 // The URL link for the receipt to do another transaction.
