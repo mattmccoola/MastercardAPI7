@@ -79,7 +79,7 @@ $appendAmp = 0;
 		}
     }
 }
-$hashinput = rtrim($hashinput, "&");
+//$hashinput = rtrim($hashinput, "&");
 ?>		
 	<!-- attach SecureHash -->
     <input type="hidden" name="vpc_SecureHash" value="<?php echo(strtoupper(hash_hmac('SHA256', $hashinput, pack('H*',$securesecret)))); ?>"/>
