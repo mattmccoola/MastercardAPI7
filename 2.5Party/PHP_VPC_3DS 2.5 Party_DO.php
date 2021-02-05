@@ -59,8 +59,8 @@ $appendAmp = 0;
 
 ?>
 
- <!--body onload="document.order.submit()"-->
-<body>
+ <body onload="document.order.submit()">
+<!--body-->
 	<form name="order" action="<?php echo($redirectURL); ?>" method="post">
     <!-- input type="submit" name="submit" value="Continue"/ -->
     <p>Please wait while your payment is being processed...</p>
