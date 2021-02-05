@@ -42,6 +42,7 @@ unset($_POST["custom"]);
 foreach($_POST as $key => $value) {
 	if (strlen($value) > 0) {
 		$conn->addDigitalOrderField($key, $value);
+		echo $key","$value;
 	}
 }
 
