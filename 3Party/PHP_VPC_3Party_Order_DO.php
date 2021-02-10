@@ -7,7 +7,7 @@ $conn = new VPCPaymentConnection();
 // This is secret for encoding the SHA256 hash
 // This secret will vary from merchant to merchant
 
-//$secureSecret = "F2C868145B4B468ED1F98B77092FDDD3";
+//$secureSecret = "2B27D8F0B4A344395016F9745F3C0EB0";
 $secureSecret = $_POST["Secure_Secret"];
 //echo $secureSecret;
 
@@ -37,10 +37,13 @@ unset($_POST["Title"]);
 unset($_POST["Secure_Secret"]);
 unset($_POST["custom"]);
 
+// set a parameter to show the first pair in the URL
+$appendAmp = 0;
+
 ?>
 
  <body onload="document.order.submit()">
-<!--body-->
+<!-- body -->
 	<form name="order" action="<?php echo($redirectURL); ?>" method="post">
     <!-- input type="submit" name="submit" value="Continue"/ -->
     <p>Please wait while your payment is being processed...</p>
@@ -52,7 +55,7 @@ unset($_POST["custom"]);
     if (strlen($value) > 0) {
 
 ?>
-<input type="hidden" name="<?php echo(urlencode($key)); ?>" value="<?php echo(urlencode($value)); ?>"/><br>
+<input type="hidden" name="<?php echo($key); ?>" value="<?php echo($value); ?>"/><br>
 <?php 			
         if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
 		$hashinput .= $key . "=" . $value . "&";
@@ -61,9 +64,10 @@ unset($_POST["custom"]);
 }
 $hashinput = rtrim($hashinput, "&");
 ?>		
-	<!-- attach SecureHash -->
+    <!-- attach SecureHash  -->
+    <input type="hidden" name="hashinput" value="<?php echo($hashinput); ?>"/>
     <input type="hidden" name="vpc_SecureHash" value="<?php echo(strtoupper(hash_hmac('SHA256', $hashinput, pack('H*',$securesecret)))); ?>"/>
-	<input type="hidden" name="vpc_SecureHashType" value="SHA256">
+    <input type="hidden" name="vpc_SecureHashType" value="SHA256">
 
 </td></tr>
 </table>
