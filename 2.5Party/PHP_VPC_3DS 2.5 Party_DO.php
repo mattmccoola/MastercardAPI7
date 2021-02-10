@@ -59,8 +59,8 @@ $appendAmp = 0;
 
 ?>
 
- <!-- body onload="document.order.submit()"-->
-<body>
+ <body onload="document.order.submit()">
+<!-- body -->
 	<form name="order" action="<?php echo($redirectURL); ?>" method="post">
     <!-- input type="submit" name="submit" value="Continue"/ -->
     <p>Please wait while your payment is being processed...</p>
@@ -81,10 +81,10 @@ $appendAmp = 0;
 }
 $hashinput = rtrim($hashinput, "&");
 ?>		
-	<!-- attach SecureHash -->
-		<input type="hidden" name="hashinput" value="<?php echo($hashinput); ?>"/>
+    <!-- attach SecureHash  -->
+    <input type="hidden" name="hashinput" value="<?php echo($hashinput); ?>"/>
     <input type="hidden" name="vpc_SecureHash" value="<?php echo(strtoupper(hash_hmac('SHA256', $hashinput, pack('H*',$securesecret)))); ?>"/>
-	<input type="hidden" name="vpc_SecureHashType" value="SHA256">
+    <input type="hidden" name="vpc_SecureHashType" value="SHA256">
 </td></tr>
 </table>
 </form>
