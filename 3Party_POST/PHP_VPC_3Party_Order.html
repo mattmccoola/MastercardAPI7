@@ -70,8 +70,12 @@
     <td><input name="vpc_Command" value="pay" size="20" maxlength="16"/></td>
 </tr>
 <tr>
+    <td align="right"><strong><em>Merchant Secure Secret: </em></strong></td>
+    <td><input name="Secure_Secret" value="2B27D8F0B4A344395016F9745F3C0EB0" size="100" maxlength="1000"/></td>
+</tr>
+<tr>
     <td align="right"><strong><em>Merchant AccessCode: </em></strong></td>
-    <td><input name="vpc_AccessCode" value="" size="20" maxlength="8"/></td>
+    <td><input name="vpc_AccessCode" value="3B5F6B49" size="20" maxlength="8"/></td>
 </tr>
 <tr class="shade">
     <td align="right"><strong><em>Merchant Transaction Reference: </em></strong></td>
@@ -79,7 +83,7 @@
 </tr>
 <tr>
     <td align="right"><strong><em>MerchantID: </em></strong></td>
-    <td><input name="vpc_Merchant" value="" size="20" maxlength="16"/></td>
+    <td><input name="vpc_Merchant" value="TESTEMV3DSTEST" size="20" maxlength="16"/></td>
 </tr>
 <tr class="shade">
     <td align="right"><strong><em>Transaction OrderInfo: </em></strong></td>
@@ -89,9 +93,57 @@
     <td align="right"><strong><em>Purchase Amount: </em></strong></td>
     <td><input name="vpc_Amount" value="" maxlength="10"/></td>
 </tr>
+<tr>
+    <td align="right"><strong><em>VPC CardSource </em></strong></td>
+    <td><input name="vpc_CardSource" value=""size="40" maxlength="40"/></td>
+</tr>
+
+<tr>
+    <td align="right"><strong><em>vpc_Return3ds2Details: </em></strong></td>
+    <td><input name="vpc_Return3ds2Details" value="" maxlength="10"/></td>
+</tr>
+<tr>
+    <td align="right"><strong><em>vpc_3ds2AuthenticatePayer: </em></strong></td>
+    <td><input name="vpc_3ds2AuthenticatePayer" value=""size="55" maxlength="85"/></td>
+</tr>
+
+<tr>
+    <td align="right"><strong><em>VPC Currency </em></strong></td>
+    <td><input name="vpc_Currency" value="AUD"size="40" maxlength="40"/></td>
+</tr>
+<tr class="shade">
+    <td align="right"><strong><em>vpc_gateway: </em></strong></td>
+    <td><input name="vpc_gateway" size="55" value="ssl" maxlength="250"/></td>
+
+<tr>
+    <td align="right"><strong><em>VPC ReturnAuthResponseData </em></strong></td>
+    <td><input name="vpc_ReturnAuthResponseData" value=""size="40" maxlength="40"/></td>
+</tr>
+<tr class="shade">
+    <td align="right"><strong><em>vpc_CardExp: </em></strong></td>
+    <td><input name="vpc_CardExp" size="6" value="" maxlength="250"/></td>
+
+<tr>
+    <td align="right"><strong><em>VPC CardNum </em></strong></td>
+    <td><input name="vpc_CardNum" value=""size="40" maxlength="40"/></td>
+</tr>
+
+<tr>
+    <td align="right"><strong><em>VPC Locale </em></strong></td>
+    <td><input name="vpc_Locale" value="en"size="5" maxlength="40"/></td>
+</tr>
+
 <tr class="shade">
     <td align="right"><strong><em>Receipt ReturnURL: </em></strong></td>
-    <td><input name="vpc_ReturnURL" size="65" value="https://mattmc7.herokuapp.com/3Party_POST/PHP_VPC_3Party_Order_DR.php" maxlength="250"/></td>
+    <td><input name="vpc_ReturnURL" size="65" value="https://mattmc7.herokuapp.com/3Party/PHP_VPC_3Party_Order_DR.php" maxlength="250"/></td>
+</tr>
+<!--<tr class="shade">
+    <td align="right"><strong><em>Custom field user_custom: </em></strong></td>
+    <td><input name="user_sapguid" size="65" value="" maxlength="250"/></td>
+</tr>
+<tr class="shade">
+    <td align="right"><strong><em>Custom field custom: </em></strong></td>
+    <td><input name="custom" size="65" value="" maxlength="250"/></td>
 </tr>
 <tr>
     <td align="right"><strong><em>Payment Server Display Language Locale: </em></strong></td>
@@ -100,9 +152,12 @@
 <tr class="shade">
     <td align="right"><strong><em>Currency: </em></strong></td>
     <td><select name="vpc_Currency"><option SELECTED>AUD</option></select></td>
+</tr>-->
+
+<tr>
+    <td align="right"><strong><em>vpc_AddendumData </em></strong></td>
+    <td><input name="vpc_AddendumData" value=""size="5" maxlength="40"/></td>
 </tr>
-
-
 
 <tr>    <td colspan="2">&nbsp;</td></tr>
 <tr>
