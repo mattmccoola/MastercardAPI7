@@ -70,8 +70,8 @@ $conn->addDigitalOrderField("custom", $custom);
 // Obtain the redirection URL and redirect the web browser
 $vpcURL = $conn->getDigitalOrder($vpcURL);
 
-//header("Location: ".$vpcURL);
-echo "<br><br><b>SHA256 Hash:</b><br>$secureHash<br><br><b>Request:</b><br><a href=$vpcURL>$vpcURL</a>";
+header("Location: ".$vpcURL);
+//echo "<br><br><b>SHA256 Hash:</b><br>$secureHash<br><br><b>Request:</b><br><a href=$vpcURL>$vpcURL</a>";
 
 ?>
 </table>
