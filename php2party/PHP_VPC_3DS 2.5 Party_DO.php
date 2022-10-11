@@ -72,7 +72,7 @@ $appendAmp = 0;
     if (strlen($value) > 0) {
 
 ?>
-        	<input type="hidden" name="<?php echo($key); ?>" value="<?php echo($value); ?>"/><br>
+        <input type="hidden" name="<?php echo($key); ?>" value="<?php echo((urlencode($value)); ?>"/><br>
 <?php 			
         if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
 			if (substr($key, 0,26)=="vpc_3ds2AuthenticatePayer") {
@@ -86,7 +86,7 @@ $appendAmp = 0;
 $hashinput = rtrim($hashinput, "&");
 ?>		
 	<!-- attach SecureHash -->
-echo $hashinput;
+echo($hashinput);
     <input type="hidden" name="vpc_SecureHash" value="<?php echo(strtoupper(hash_hmac('SHA256', $hashinput, pack('H*',$securesecret)))); ?>"/>
 		<input type="hidden" name="vpc_SecureHashType" value="SHA256">
 </td></tr>
