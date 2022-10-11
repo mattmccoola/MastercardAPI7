@@ -77,7 +77,7 @@ $appendAmp = 0;
         if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
 			if ($key == "vpc_3ds2AuthenticatePayer") {
 				$hashinput .= $key . "=" . urlencode($value) . "&";
-			else {
+			} else {
 				$hashinput .= $key . "=" . $value . "&";
 			}
 		}
