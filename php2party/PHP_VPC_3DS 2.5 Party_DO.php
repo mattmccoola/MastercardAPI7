@@ -70,16 +70,18 @@ $appendAmp = 0;
    foreach($_POST as $key => $value) {
     // create the hash input and URL leaving out any fields that have no value
     if (strlen($value) > 0) {
-
+		if (substr($key, 0,26)=="vpc_3ds2AuthenticatePayer") {
+			$value=urlencode($value);
+		}
 ?>
-        <input type="hidden" name="<?php echo($key); ?>" value="<?php echo((urlencode($value)); ?>"/><br>
+        <input type="hidden" name="<?php echo($key); ?>" value="<?php echo($value); ?>"/><br>
 <?php 			
         if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
-			if (substr($key, 0,26)=="vpc_3ds2AuthenticatePayer") {
-				$hashinput .= $key . "=" . urlencode($value) . "&";
-			} else {
+			// if (substr($key, 0,26)=="vpc_3ds2AuthenticatePayer") {
+			//	$hashinput .= $key . "=" . urlencode($value) . "&";
+			// } else {
 				$hashinput .= $key . "=" . $value . "&";
-			}
+			// }
 		}
     }
 }
