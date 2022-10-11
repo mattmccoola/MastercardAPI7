@@ -10,7 +10,7 @@
 // This secret will vary from merchant to merchant
 // To not create a secure hash, let SECURE_SECRET be an empty string - ""
 
-$securesecret = "secure hash here";
+$securesecret = "2B27D8F0B4A344395016F9745F3C0EB0";
 
 //Include VPCPaymentConnection.php file
 include('VPCPaymentConnection.php');
@@ -36,6 +36,11 @@ $redirectURL = $_POST["virtualPaymentClientURL"];
 // do not want to send these fields to the Virtual Payment Client.
 unset($_POST["virtualPaymentClientURL"]); 
 unset($_POST["btnPay"]);
+unset($_POST["virtualPaymentClientURL"]); 
+unset($_POST["SubButL"]);
+unset($_POST["Title"]);
+unset($_POST["Secure_Secret"]);
+unset($_POST["custom"]);
 
 
 // The URL link for the receipt to do another transaction.
