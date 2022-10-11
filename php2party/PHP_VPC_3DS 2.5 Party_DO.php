@@ -75,7 +75,7 @@ $appendAmp = 0;
         	<input type="hidden" name="<?php echo($key); ?>" value="<?php echo($value); ?>"/><br>
 <?php 			
         if ((strlen($value) > 0) && ((substr($key, 0,4)=="vpc_") || (substr($key,0,5) =="user_"))) {
-			if ($key == "vpc_3ds2AuthenticatePayer") {
+			if (substr($key, 0,26)=="vpc_3ds2AuthenticatePayer") {
 				$hashinput .= $key . "=" . urlencode($value) . "&";
 			} else {
 				$hashinput .= $key . "=" . $value . "&";
